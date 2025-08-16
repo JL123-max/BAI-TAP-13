@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="./index.css">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="tab-header">
+            <div class="tab-link" onclick="showTab(0)">
+                PROBLEM 1
+            </div>
+            <div class="tab-link" onclick="showTab(1)">
+                PROBLEM 2
+            </div>
+            <div class="tab-link" onclick="showTab(2)">
+                PROBLEM 3
+            </div>
+            <div class="tab-link" onclick="showTab(3)">
+                PROBLEM 4
+            </div>
+        </div>
+<!-- Problem 1 - QUAN LY SINH VIEN -->
+        <div class="tab-content active">
+            <h2>Quản lý tuyển sinh</h2>
+            <div>
+                <h3>Gợi ý:</h3>
+                <button data-toggle="collapse" data-target="#collapseButton1" aria-expanded="false"
+                    aria-controls="collapseButton" class="flex items-center pb-4">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Mở rộng để xem thêm</span>
+                </button>
+                <div class="overflow-hidden transition-[max-height] duration-300 ease-in-out max-h-0 mt-1"
+                    id="collapseButton1">
+                    <ul class="list-disc pl-10 pb-4">
+                        <li>Điểm chuẩn của hội đồng các bạn tự nhập thêm. Điểm chuẩn của 3 môn thường tối đa
+                            30đ.<br>Nên
+                            có thể lấy các điểm chuẩn như sau: 30,25,29</li>
+                        <li>Ô nhập khu vực, đối tượng có thể tạo bằng input, dropdown hoặc radio.<br>Nếu không
+                            thuộc khu
+                            vực hoặc đối tượng trong danh sách thì điểm khu vực và điểm đối tượng sẽ là 0</li>
+                        <li>Nếu có 1 trong 3 môn bị điểm 0 thì lặp tức cho rớt không cần kiểm tra tổng điểm có
+                            lớn hơn
+                            hoặc bằng điểm chuẩn hay không</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+                <input type="number" min="0" max="10" step="0.5" name="" id="DiemChuan" placeholder="Điểm chuẩn"
+                    class="">
+                <div class="w-full">
+                    <button data-toggle="collapse" data-target="#collapseButton11" aria-expanded="false"
+                        aria-controls="collapseButton" class="relative text-left w-full">
+                        <input type="text" name="" id="HT-khuVuc" placeholder="Chon khu vực">
+                        <div class="absolute overflow-hidden max-h-0" id="collapseButton11">
+                            <div class="bg-white border-none border-black-500">
+                                <p>Chon khu vực</p>
+                                <div>
+                                    <input type="radio" key="2" name="diemKhuVuc" onclick="displayArea(this.value)"
+                                        value="Khu vực A" /> Khu vực A
+                                </div>
+                                <div>
+                                    <input type="radio" key="1" name="diemKhuVuc" onclick="displayArea(this.value)"
+                                        value="Khu vực B" /> Khu vực B
+                                </div>
+                                <div>
+                                    <input type="radio" key="0.5" name="diemKhuVuc" onclick="displayArea(this.value)"
+                                        value="Khu vực C" /> Khu vực C
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                <!-- <input type="text" name="" id="doiTuong" placeholder="Chon đối tượng"> -->
+                <div class="w-full">
+                    <button data-toggle="collapse" data-target="#collapseButton12" aria-expanded="false"
+                        aria-controls="collapseButton" class="relative text-left w-full">
+                        <input type="text" name="" id="HT-DoiTuong" placeholder="Chon đối tượng">
+                        <div class="absolute overflow-hidden max-h-0" id="collapseButton12">
+                            <div class="bg-white border-none border-black-500">
+                                <p>Chon đối tượng</p>
+                                <div>
+                                    <input type="radio" name="diemDoiTuong" onclick="displayTarget(this.value)"
+                                        value="đối tượng 1" /> đối tượng 1
+                                </div>
+                                <div>
+                                    <input type="radio" name="diemDoiTuong" onclick="displayTarget(this.value)"
+                                        value="đối tượng 2" /> đối tượng 2
+                                </div>
+                                <div>
+                                    <input type="radio" name="diemDoiTuong" onclick="displayTarget(this.value)"
+                                        value="đối tượng 3" /> đối tượng 3
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                <input type="number" min="0" max="10" step="0.5" name="" id="diemMon1" placeholder="Điểm môn 1">
+                <input type="number" min="0" max="10" step="0.5" name="" id="diemMon2" placeholder="Điểm môn 2">
+                <input type="number" min="0" max="10" step="0.5" name="" id="diemMon3" placeholder="Điểm môn 3">
+            </div>
+            <button onclick="result1()" class="pt-4">Ket qua</button>
+            <div id="KetQua-1"></div>
+        </div>
+<!-- Problem 2 - TINH TIEN DIEN -->
+        <div class="tab-content">
+            <h2>Tính tiền điện</h2>
+            <div>
+                <h3>Gợi ý:</h3>
+                <div>
+                    <div class="">
+                        <button data-toggle="collapse" data-target="#collapseButton2" aria-expanded="false"
+                            aria-controls="collapseButton" class="flex items-center pb-4">
+                            <i class="fa fa-caret-right"></i>
+                            <span>Mở rộng để xem thêm</span>
+                        </button>
+                        <div class="overflow-hidden transition-[max-height] duration-300 ease-in-out max-h-0"
+                            id="collapseButton2">
+                            <div class="bg-white pb-4">
+                                <p class="">Cách tính tiền điện gần giống với bài tính tiền Grab trên lớp</p>
+                                <img src="" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <input type="text" id="full_name_2" placeholder="Nhap Ho Ten">
+                <input type="number" min="0" id="so_kW" placeholder="so kW">
+            </div>
+            <button onclick="result2()" class="pt-4">Tinh tien Dien</button>
+            <div id="KetQua-2"></div>
+        </div>
+<!-- Problem 3 - TINH THUE THU NHAP CA NHAN -->
+        <div class="tab-content">
+            <h2>Tính thuế thu nhập cá nhân</h2>
+            <div>
+                <h3>Gợi ý:</h3>
+                <div>
+                    <button data-toggle="collapse" data-target="#collapseButton3" aria-expanded="false"
+                        aria-controls="collapseButton" class="flex items-center pb-4">
+                        <i class="fa fa-caret-right"></i>
+                        <span>Mở rộng để xem thêm</span>
+                    </button>
+
+                    <ul class="list-disc px-10 overflow-hidden transition-[max-height] duration-300 ease-in-out max-h-0"
+                        id="collapseButton3">
+                        <li>Tổng thu nhập năm các bạn tự nhập thêm. Giả sử 1 tháng thu nhập 10tr thì 1 năm sẽ là 10 x 12
+                            = 120tr => các bạn sẽ nhập 120000000</li>
+                        <li>Demo hiện tại đang tính % thuế theo điều kiện mà thu nhập chịu thuế rơi vào. Vd: thu nhập
+                            chịu thuế là 110tr thì tính 10% của 110tr => 110tr * 0.1</li>
+                        <li>Do đề bài không ghi rõ yêu cầu tính thuế nên cũng có thể tính theo cách chia ra từng đoạn
+                            thuế giống bài tính tiền grab. Vd: 110tr => 60tr *0.05 + (110tr-60tr) * 0.1</li>
+                        <li>Sử dụng input có type number thì khi nhập 120000000, có thể nhập ngắn gọn thành 120e+6</li>
+                        <li>Đối với các con số hàng triệu có nhiều số 0, có thể viết ngắn gọn trong code như sau:
+                            4tr => 4000000 => 4e+6</li>
+                        <li class="pb-4">Dùng NumberFormat để số tiền hiển thị đẹp hơn: NumberFormat</li>
+                    </ul>
+                </div>
+            </div>
+            <div class=" grid grid-cols-3 gap-5 max-w-4xl">
+                <input type="text" id="full_name_3" placeholder="Nhap Ho Ten" class="text-right">
+                <div class="flex">
+                    <input type="number" min="0" name="" id="tong_luong" placeholder="Tổng thu nhập năm"
+                        class="flex flex-1 text-right">
+                    <span class="flex items-center text-left">trieu VND</span>
+                </div>
+                <input type="number" min="0" name="" id="so_nguoi_PT" placeholder="So nguoi phu thuoc"
+                    class="text-right">
+            </div>
+            <button onclick="result3()" class="pt-4">Tinh tien Thue</button>
+            <div id="KetQua-3"></div>
+        </div>
+<!-- Problem 4 - TINH TIEN CAP -->
+        <div class="tab-content">
+            <h2>Tính tiền cáp</h2>
+            <div>
+                <h3>Gợi ý:</h3>
+                <div>
+                    <button data-toggle="collapse" data-target="#collapseButton4" aria-expanded="false"
+                        aria-controls="collapseButton" class="flex items-center mb-4">
+                        <i class="fa fa-caret-right"></i>
+                        <span>Mở rộng để xem thêm</span>
+                    </button>
+                    <ul class="list-disc px-10 overflow-hidden transition-[max-height] duration-300 ease-in-out max-h-0"
+                        id="collapseButton4">
+                        <li>ĐSử dụng event onchange của dropdown để xử lý ẩn hiện cho ô nhập số kết nối khi chọn
+                            loại
+                            khách hàng: Onchange</li>
+                        <li class="mb-4">Đối với loại khách hàng Doanh Nghiệp, tổng 10 kết nối đầu là 75$><br>
+                            => đây là giá trọn gói, nếu doanh nghiệp lắp đặt số kết nối nhỏ hơn 10 thì vẫn phải đóng
+                            75$.<br>
+                            Vd: 6 kết nối thì vẫn sẽ cộng 75$ vào tổng tiền.<br>
+                            => Nếu lắp trên 10 kết nối thì kết nối thứ 11 trở đi sẽ tính 5$/kết nối.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+                <!--  -->
+                <button data-toggle="collapse" data-target="#collapseButton41" aria-expanded="false"
+                    aria-controls="collapseButton" class="relative text-left w-full">
+                    <input type="text" name="" id="HT-LoaiKH" placeholder="Chọn loại khách hàng">
+                    <div class="absolute overflow-hidden max-h-0" id="collapseButton41">
+                        <div class="bg-white border-none border-black-500">
+                            <p>Chọn loại khách hàng</p>
+                            <div>
+                                <input type="radio" key="" name="loaiKhachHang" onclick="displayTarget4(this.value)"
+                                    value="Nha Dan" /> Nha dan
+                            </div>
+                            <div>
+                                <!--  -->
+
+                                <!--  -->
+                                <input type="radio" key="" name="loaiKhachHang" onclick="displayTarget4(this.value)"
+                                    value="Doanh Nghiệp" data-toggle="collapseButton42" id="collapse42"> Doanh Nghiệp
+                            </div>
+                        </div>
+                    </div>
+                </button>
+                <!--  -->
+                
+                <input type="text" name="" id="" placeholder="Nhap ma khách hàng">
+                <input type="number" min="0" name="" id="" placeholder="So kenh cao cap">
+                <!-- <button data-toggle="collapse" data-target="#collapseButton42" aria-expanded="false"
+                    aria-controls="collapseButton" class="flex items-center">
+                </button> -->
+                <input class="list-disc px-10 overflow-auto transition-[max-height] duration-300 ease-in-out max-h-0"
+                    id="collapseButton42" aria-labelledby="collapse42" type="number" min="0" placeholder="So ket noi">
+                </input>
+            </div>
+            <button onclick="result4()">Tinh tien cap</button>
+            <div id="KetQua-4"></div>
+        </div>
+    </div>
+
+    <script src="./index.js"> </script>
+    <script src="https://unpkg.com/@material-tailwind/html@3.0.0-beta.7/dist/material-tailwind.umd.min.js"
+        defer></script>
+
+    <!--  -->
+    <script>
+
+    </script>
+    <!--  -->
+</body>
+
+</html>
