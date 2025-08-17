@@ -109,6 +109,18 @@ function displayTarget4(LoaiKH) {
   document.getElementById("HT-LoaiKH").value = LoaiKH;
 }
 
+function displayTarget41(val) {
+  document.getElementById("HT-LoaiKH").value = val;
+  const box = document.getElementById('collapseButton42');
+  if (val === 'Doanh Nghiệp') {
+    box.classList.remove('max-h-0');
+    box.classList.add('max-h-screen'); // or max-h-screen, etc.
+  } else {
+    box.classList.remove('max-h-screen');
+    box.classList.add('max-h-0');
+  }
+  
+}
 
 
 

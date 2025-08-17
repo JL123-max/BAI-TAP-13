@@ -224,11 +224,10 @@
                                     value="Nha Dan" /> Nha dan
                             </div>
                             <div>
-                                <!--  -->
-
-                                <!--  -->
-                                <input type="radio" key="" name="loaiKhachHang" onclick="displayTarget4(this.value)"
-                                    value="Doanh Nghiệp" data-toggle="collapseButton42" id="collapse42"> Doanh Nghiệp
+                                
+                                <input type="radio" key="" name="loaiKhachHang" onclick="displayTarget41(this.value)"
+                                    value="Doanh Nghiệp" data-toggle="#collapseButton42" id="collapse42"> Doanh Nghiệp
+                                    
                             </div>
                         </div>
                     </div>
@@ -240,11 +239,13 @@
                 <!-- <button data-toggle="collapse" data-target="#collapseButton42" aria-expanded="false"
                     aria-controls="collapseButton" class="flex items-center">
                 </button> -->
-                <input class="list-disc px-10 overflow-auto transition-[max-height] duration-300 ease-in-out max-h-0"
-                    id="collapseButton42" aria-labelledby="collapse42" type="number" min="0" placeholder="So ket noi">
+                <div class="overflow-hidden ease-in-out max-h-0" id="collapseButton42" aria-labelledby="collapse42">
+                    <input  type="number" min="0" placeholder="So ket noi">
                 </input>
+                </div>
+                
             </div>
-            <button onclick="result4()">Tinh tien cap</button>
+            <button onclick="result4()" class="pt-4">Tinh tien cap</button>
             <div id="KetQua-4"></div>
         </div>
     </div>
